@@ -1,4 +1,4 @@
-getgenv().SecureMode = true
+-- Made by heiway on Discord
 getgenv().LoadTab = getgenv().LoadTab or {
     ["Farming"] = true,
     ["Sub Farming"] = true,
@@ -549,7 +549,7 @@ if not getgenv().NoUi then
     getgenv().UiElements = {}
     
     local Window = Fluent:CreateWindow({
-        Name = "Hachi Hub",
+        Title = "Hachi Hub",
         SubTitle = "Rewrite v1.0 | discord.gg/",
         Icon = 73008788394682,
         Acrylic = true,
