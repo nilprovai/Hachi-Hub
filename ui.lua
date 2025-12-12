@@ -173,7 +173,7 @@ local UiIntilize = {
                     getgenv().Settings["Fishing Spot Position"] = tostring(LocalPlayer.Character.HumanoidRootPart.CFrame)
                     Starlight:Notification({
                         Title = "Hachi Hub",
-                        Icon = 73008788394682,
+                        Icon = 99547827506174,
                         Content = string.format("Fishing spot position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -409,7 +409,7 @@ local UiIntilize = {
                 setclipboard(tostring(JobId))
                 Starlight:Notification({
                     Title = "Hachi Hub",
-                    Icon = 73008788394682,
+                    Icon = 99547827506174,
                     Content = "Copied Job ID to clipboard." ,
                     Duration = 2,
                 })
@@ -478,7 +478,7 @@ local UiIntilize = {
                     getgenv().Settings["AnchorPosition"] = tostring(LocalPlayer.Character.HumanoidRootPart.Position)
                     Starlight:Notification({
                         Title = "Hachi Hub",
-                        Icon = 73008788394682,
+                        Icon = 99547827506174,
                         Content = string.format("Anchor position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -553,7 +553,7 @@ if not getgenv().NoUi then
     local Window = Starlight:CreateWindow({
         Name = "Hachi Hub",
         Subtitle = "Beta v1.0 | discord.gg/hachihub",
-        Icon = 73008788394682,
+        Icon = 99547827506174,
 
         LoadingEnabled = true,
         LoadingSettings = {
