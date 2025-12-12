@@ -31,7 +31,7 @@ local CommF = Remotes:WaitForChild("CommF_")
 local Players = game.Players
 local LocalPlayer = Players.LocalPlayer
 
-local Starlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/nilprovai/W/refs/heads/main/starlight-ui.lua"))() 
+local Starlight = loadstring(game:HttpGet("github.com/nilprovai/Hachi-Hub/blob/main/starlight-ui.lua"))() 
 local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
 
 local UiOrders = {
@@ -173,7 +173,7 @@ local UiIntilize = {
                     getgenv().Settings["Fishing Spot Position"] = tostring(LocalPlayer.Character.HumanoidRootPart.CFrame)
                     Starlight:Notification({
                         Title = "Hachi Hub",
-                        Icon = 89753210367517,
+                        Icon = 73008788394682,
                         Content = string.format("Fishing spot position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -412,7 +412,7 @@ local UiIntilize = {
                 setclipboard(tostring(JobId))
                 Starlight:Notification({
                     Title = "Hachi Hub",
-                    Icon = 89753210367517,
+                    Icon = 73008788394682,
                     Content = "Copied Job ID to clipboard." ,
                     Duration = 2,
                 })
@@ -481,7 +481,7 @@ local UiIntilize = {
                     getgenv().Settings["AnchorPosition"] = tostring(LocalPlayer.Character.HumanoidRootPart.Position)
                     Starlight:Notification({
                         Title = "Hachi Hub",
-                        Icon = 89753210367517,
+                        Icon = 73008788394682,
                         Content = string.format("Anchor position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -554,12 +554,12 @@ if not getgenv().NoUi then
     Starlight:SetTheme("Hachi Hub")
     local Window = Starlight:CreateWindow({
         Name = "Hachi Hub",
-        Subtitle = "Rewrite v1.0 | discord.gg/Hachi Hub",
-        Icon = 89753210367517,
+        Subtitle = "Beta v1.0 | discord.gg/hachihub",
+        Icon = 73008788394682,
 
         LoadingEnabled = true,
         LoadingSettings = {
-            Title = "Hachi Hub Rewrite",
+            Title = "Hachi Hub",
             Subtitle = "Welcome to Hachi Hub",
         },
         DefaultSize = getgenv().UiSize
@@ -687,7 +687,7 @@ end
 
 local SettingsManager = {}
 function SettingsManager:LoadConfigPath()
-    self.Folder = "Hachi Hub_Rewrite"
+    self.Folder = "Hachi Hub"
     self.ConfigPath = string.format("%s/%s.json", self.Folder, LocalPlayer.Name)
     if not isfolder(self.Folder) then
         makefolder(self.Folder)
