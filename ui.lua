@@ -1,4 +1,4 @@
--- Made by heiway on Discord
+getgenv().SecureMode = true
 getgenv().LoadTab = getgenv().LoadTab or {
     ["Farming"] = true,
     ["Sub Farming"] = true,
@@ -31,7 +31,7 @@ local CommF = Remotes:WaitForChild("CommF_")
 local Players = game.Players
 local LocalPlayer = Players.LocalPlayer
 
-local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/discoart/FluentPlus/refs/heads/main/Beta.lua"))()
+local Starlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/nilprovai/W/refs/heads/main/starlight-ui.lua"))() 
 local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
 
 local UiOrders = {
@@ -171,8 +171,9 @@ local UiIntilize = {
             {Mode="Button",Title="Save Fishing Spot Position", Callback=function()
                 pcall(function ()
                     getgenv().Settings["Fishing Spot Position"] = tostring(LocalPlayer.Character.HumanoidRootPart.CFrame)
-                    Fluent:Notify({
+                    Starlight:Notification({
                         Title = "Hachi Hub",
+                        Icon = 89753210367517,
                         Content = string.format("Fishing spot position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -409,8 +410,9 @@ local UiIntilize = {
         {Title="Server Management", Children={
             {Mode = "Button",Title = "Copy Job Id",Callback = function ()
                 setclipboard(tostring(JobId))
-                Fluent:Notify({
+                Starlight:Notification({
                     Title = "Hachi Hub",
+                    Icon = 89753210367517,
                     Content = "Copied Job ID to clipboard." ,
                     Duration = 2,
                 })
@@ -444,7 +446,7 @@ local UiIntilize = {
             {Mode = "Button",Title = "Remove Effects",Id = "Remove Effects"},
             {Mode = "Button",Title = "Remove Sea Terror Effect",Id="Remove Sea Terror Effect"},
             {Mode = "Toggle",Title = "Disable 3D Render",Id = "Disable 3D Render"},
-            {Mode = "Toggle",Title = "Disable Notifys",Id = "Disable Notifys"},
+            {Mode = "Toggle",Title = "Disable Notifications",Id = "Disable Notifications"},
             {Mode = "Toggle",Title = "Disable DMG Counter",Id = "Disable DMG Counter"},
         }},
     },
@@ -454,7 +456,7 @@ local UiIntilize = {
             {Mode="Input", Title="Webhook URL", Id="Webhook URL"},
             {Mode="Button", Title="Test Webhook", Id="Test Webhook"}
         }},
-        {Title = "Webhook Notifys", Children={
+        {Title = "Webhook Notifications", Children={
             {Mode="Toggle", Title = "Store Fruit", Id="Webhook Store Fruit"},
             {Mode="Toggle", Title = "Snipe Fruit", Id="Webhook Snipe Fruit"},
             {Mode="Toggle", Title = "Fullmoon", Id="Webhook Fullmoon"},
@@ -477,8 +479,9 @@ local UiIntilize = {
             {Mode="Button",Title="Set Anchor Position",Callback=function()
                 pcall(function ()
                     getgenv().Settings["AnchorPosition"] = tostring(LocalPlayer.Character.HumanoidRootPart.Position)
-                    Fluent:Notify({
+                    Starlight:Notification({
                         Title = "Hachi Hub",
+                        Icon = 89753210367517,
                         Content = string.format("Anchor position has been set to: %s", tostring(LocalPlayer.Character.HumanoidRootPart.Position)),
                         Duration = 2,
                     })
@@ -548,15 +551,23 @@ end
 if not getgenv().NoUi then
     getgenv().UiElements = {}
     
-    local Window = Fluent:CreateWindow({
-        Title = "Hachi Hub",
-        SubTitle = "Rewrite v1.0 | discord.gg/",
-        Icon = 73008788394682,
-        Acrylic = true,
-        MinimizeKey = Enum.KeyCode.RightShift
+    Starlight:SetTheme("Hachi Hub")
+    local Window = Starlight:CreateWindow({
+        Name = "Hachi Hub",
+        Subtitle = "Rewrite v1.0 | discord.gg/Hachi Hub",
+        Icon = 89753210367517,
+
+        LoadingEnabled = true,
+        LoadingSettings = {
+            Title = "Hachi Hub Rewrite",
+            Subtitle = "Welcome to Hachi Hub",
+        },
+        DefaultSize = getgenv().UiSize
     })
 
-    local BuildUi = function(Tab, Children)
+    local TabSection = Window:CreateTabSection("Main", false)
+
+    local BuildUi = function(GroupBox, Children)
         for _, arg in pairs(Children) do
             local success, _ = pcall(function()
                 local _ = arg.Title
@@ -564,7 +575,7 @@ if not getgenv().NoUi then
             if not success then continue end
             
             local MainArg = {
-                Title = arg.Title
+                Name = arg.Title
             }
 
             if arg.Mode == "Button" then
@@ -573,26 +584,26 @@ if not getgenv().NoUi then
                 else
                     MainArg.Callback = getgenv().IslandCaller[arg.Id]
                 end
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:AddButton(MainArg)
+                getgenv().UiElements[arg.Id or arg.Title] = GroupBox:CreateButton(MainArg, arg.Id or arg.Title)
             elseif arg.Mode == "Toggle" then
-                MainArg.Default = getgenv().Settings[arg.Id] or arg.Default or false
+                MainArg.CurrentValue = getgenv().Settings[arg.Id] or arg.Default or false
                 MainArg.Callback = function(value)
                     if arg.Id then
                         getgenv().Settings[arg.Id] = value
                     end
                 end
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:AddToggle(arg.Id or arg.Title, MainArg)
+                getgenv().UiElements[arg.Id or arg.Title] = GroupBox:CreateToggle(MainArg, arg.Id or arg.Title)
             elseif arg.Mode == "Slider" then
-                MainArg.Default = getgenv().Settings[arg.Id] or arg.Default or 1
-                MainArg.Min = arg.Min or 1
-                MainArg.Max = arg.Max or 100
+                MainArg.CurrentValue = getgenv().Settings[arg.Id] or arg.Default or 1
+                MainArg.Range = {arg.Min or 1, arg.Max or 100}
                 MainArg.Callback = function(value)
                     if arg.Id then
                         getgenv().Settings[arg.Id] = value
                     end
                 end
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:AddSlider(arg.Id or arg.Title, MainArg)
+                getgenv().UiElements[arg.Id or arg.Title] = GroupBox:CreateSlider(MainArg, arg.Id or arg.Title)
             elseif arg.Mode == "Dropdown" then
+                local Label = GroupBox:CreateLabel(MainArg, arg.Id or arg.Title)
                 local Default = {}
                 local ArgDefaut = getgenv().Settings[arg.Id] or arg.Default or {}
                 if ArgDefaut then
@@ -604,11 +615,11 @@ if not getgenv().NoUi then
                 end
 
                 local DropdownArg = {
-                    Values = arg.Table or {},
-                    Default = Default,
-                    Description = arg.Title or "Select value",
-                    Multi = arg.Multi or false,
-                    Search = true,
+                    Options = arg.Table or {},
+                    CurrentOption = Default,
+                    Placeholder = arg.Title or "Select value",
+                    MultipleOptions = arg.Multi or false,
+                    Special = arg.Special or 0,
                     Callback = arg.Callback or function(options)
                         if arg.Id then
                             if not arg.Multi then
@@ -619,13 +630,14 @@ if not getgenv().NoUi then
                         end
                     end
                 }
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:AddDropdown((arg.Id or arg.Title) .. "dropdown", DropdownArg)
+                getgenv().UiElements[arg.Id or arg.Title] = Label:AddDropdown(DropdownArg, (arg.Id or arg.Title) .. "dropdown")
             elseif arg.Mode == "Label" then
                 MainArg.Content = getgenv().OnDebugMode and "Phuong Anh ~" or "Unknow"
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:AddParagraph(MainArg)
+                getgenv().UiElements[arg.Id or arg.Title] = GroupBox:CreateParagraph(MainArg, arg.Id or arg.Title)
             elseif arg.Mode == "Input" then
-                MainArg.Placeholder = arg.Title
-                MainArg.Finished = true
+                MainArg.PlaceholderText = arg.Title
+                MainArg.Enter = true
+                MainArg.RemoveTextAfterFocusLost = false
                 if arg.Callback or arg.Id then
                     MainArg.Callback = function(text)
                         print(text)
@@ -635,36 +647,42 @@ if not getgenv().NoUi then
                     end
                 end
                 if getgenv().Settings[arg.Id] then
-                    MainArg.Default = getgenv().Settings[arg.Id]
+                    MainArg.CurrentValue = getgenv().Settings[arg.Id]
                 end
-                getgenv().UiElements[arg.Id or arg.Title] = Tab:CreateInput(arg.Id or arg.Title, MainArg)
+                getgenv().UiElements[arg.Id or arg.Title] = GroupBox:CreateInput(MainArg, arg.Id or arg.Title)
             end
         end
     end
 
-    local BuildTabChildren = function(Tab, TabName)
-        for _, tab in pairs(UiIntilize[TabName] or {}) do
+    local BuildGroup = function(Tab, TabName)
+        for _, group in pairs(UiIntilize[TabName] or {}) do
+            local GroupBox = Tab:CreateGroupbox({
+                Name = group.Title,
+                Column = 1
+            }, group.Title)
+
             task.spawn(function()
-                BuildUi(Tab, tab.Children)
+                BuildUi(GroupBox, group.Children)
             end)
         end 
     end
 
-    local BuildTab = function()
+    local BuildTabSection = function()
         for _, arg in pairs(UiOrders) do
             if not getgenv().LoadTab[arg.title] then continue end
-            local Tab = Window:AddTab({
-                Title = arg.title,
-                Icon = NebulaIcons:GetIcon(arg.icon, 'Lucide')
+            local Tab = TabSection:CreateTab({
+                Name = arg.title,
+                Icon = NebulaIcons:GetIcon(arg.icon, 'Lucide'),
+                Columns = 1
             }, arg.title)
 
             task.spawn(function()
-                BuildTabChildren(Tab, arg.title)
+                BuildGroup(Tab, arg.title)
             end)
         end
     end
 
-    task.spawn(BuildTab) 
+    task.spawn(BuildTabSection) 
 end
 
 local SettingsManager = {}
@@ -737,4 +755,4 @@ setmetatable(proxy, {
 })
 
 getgenv().Settings = proxy
-return Fluent
+return Starlight
