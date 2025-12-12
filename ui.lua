@@ -62,7 +62,7 @@ local UiIntilize = {
         }},
         {Title="Weapon Settings", Children={
             {Mode="Label", Title="Blox Fruit only for fruit can m1, such as Kitsune, Dragon, Gas, T-rex, ..."},
-            {Mode="Label", Title="Gun for Dragon Storm and Soul Guitar (recommend)"},
+            {Mode="Label", Title="Gun for Dragonstorm and Skull Guitar (recommend)"},
             {Mode="Dropdown",Title="Weapon For Farm", Id="Weapon For Farm",Table={"Melee", "Sword", "Blox Fruit", "Gun"}, Default=getgenv().Settings["Weapon For Farm"] or "Melee"},
             {Mode="Toggle",Title="Switch Sword When Low Health", Id="Switch Sword When Low"},
         }},
@@ -93,8 +93,8 @@ local UiIntilize = {
         }},
         {Title="Special Farms", Children={
             {Mode="Button",Title="Upgrade Yoru V2",Id="Upgrade Your V2"},
-            {Mode="Toggle",Title="Auto Soul Guitar",Id = "Auto Soul Guitar"},
-            {Mode="Toggle",Title="Auto Soul Guitar Material",Id = "Auto Soul Guitar Material"},
+            {Mode="Toggle",Title="Auto Skull Guitar",Id = "Auto Skull Guitar"},
+            {Mode="Toggle",Title="Auto Skull Guitar Material",Id = "Auto Skull Guitar Material"},
             {Mode="Toggle",Title="Auto CDK",Id = "Auto CDK"},
             {Mode="Toggle",Title="Auto Shark Anchor",Id = "Auto Shark Anchor"},
         }},
@@ -243,6 +243,8 @@ local UiIntilize = {
             {Mode = "Slider",Title = "Ship Speed",Id = "Ship Speed",Default = getgenv().Settings["Ship Speed"] or 500, Min=1, Max=1000},
             {Mode="Dropdown",Title="Select Ship",Table={"PirateSloop","Swan Ship","Beast Hunter","PirateGrandBrigade","MarineGrandBrigade","PirateBrigade","MarineBrigade"},Default=getgenv().Settings["Selected Ship"] or "PirateGrandBrigade", Id="Selected Ship"},
             {Mode="Toggle",Title="Only Use M1 Fruit For Sea Events",Id="Only Use M1 Fruit For Sea Events"},
+            {Mode="Toggle",Title="Only Use M1 Gun For Sea Events",Id="Only Use M1 Gun For Sea Events"},
+            {Mode="Toggle",Title="Auto Sync Dragonstorm And Skull Guitar",Id="Auto Sync Gun"},
             {Mode="Toggle",Title="Use Stack With Melee/Sword", Id="Use Stack Weapon"},
             {Mode = "Dropdown",Title = "Skills For Fruit",Id = "Skills For Fruit Sea Events",Multi = true,Table = {"Z","X","C","V","F"},Default = getgenv().Settings["Skills For Fruit Sea Events"] or {"Z","X","C","V","F"}},
             {Mode = "Dropdown",Title = "Weapon For Sea Events",Id = "Weapon For Sea Events",Multi = true,Table = {"Melee","Blox Fruit","Sword","Gun"},Default = getgenv().Settings["Weapon For Sea Events"] or {"Melee", "Blox Fruit", "Sword", "Gun"}},
@@ -493,7 +495,7 @@ local UiIntilize = {
         {Title = "Combat", Children={
             {Mode = "Toggle",Title = "Auto Click",Id = "Auto Click"},
             {Mode = "Toggle",Title = "Auto M1 Fruit",Id = "Auto M1 Fruit"},
-            {Mode = "Toggle",Title = "Dragon Storm Kill Aura",Id = "Dragon Storm Kill Aura"},
+            {Mode = "Toggle",Title = "Dragonstorm Kill Aura",Id = "Dragonstorm Kill Aura"},
             {Mode = "Toggle",Title = "On Player",Id = "Auto Click On Player"},
             {Mode = "Toggle",Title = "On Mob",Id = "Auto Click On Mob"},
             {Mode = "Toggle",Title = "On Sea Events",Id = "Auto Click On Sea Events"},
