@@ -9,7 +9,6 @@ getgenv().LoadTab = getgenv().LoadTab or {
     ["Local Player"] = true,
     ["Status"] = true,
     ["PVP"] = true,
-    ["Fruit"] = true,
     ["Travel"] = true,
     ["Shop"] = true,
     ["Server"] = true,
@@ -44,7 +43,6 @@ local UiOrders = {
     { title = "Local Player", icon = "map-pin" },
     { title = "Status", icon = "chart-no-axes-column" },
     { title = "PVP", icon = "crosshair" },
-    { title = "Fruit", icon = "apple" },
     { title = "Travel", icon = "navigation" },
     { title = "Shop", icon = "shopping-cart" },
     { title = "Server", icon = "server" },
@@ -63,7 +61,9 @@ local UiIntilize = {
             {Mode="Toggle",Title="Kill Aura",Id="Kill Aura"},
         }},
         {Title="Weapon Settings", Children={
-            {Mode="Dropdown",Title="Weapon For Farm", Id="Weapon For Farm",Table={"Melee", "Sword", "Blox Fruit"}, Default=getgenv().Settings["Weapon For Farm"] or "Melee"},
+            {Mode="Label", Title="Blox Fruit only for fruit can m1, such as Kitsune, Dragon, Gas, T-rex, ..."},
+            {Mode="Label", Title="Gun for Dragon Storm and Soul Guitar (recommend)"},
+            {Mode="Dropdown",Title="Weapon For Farm", Id="Weapon For Farm",Table={"Melee", "Sword", "Blox Fruit", "Gun"}, Default=getgenv().Settings["Weapon For Farm"] or "Melee"},
             {Mode="Toggle",Title="Switch Sword When Low Health", Id="Switch Sword When Low"},
         }},
         {Title="Mastery Settings", Children={
@@ -184,10 +184,6 @@ local UiIntilize = {
             {Mode="Dropdown",Title="Select Bait To Buy",Id="Selected Bait",Table=getgenv().IslandVariable.FishingBaits,Default=getgenv().Settings["Selected Bait"] or "Basic Bait"},
             {Mode="Button",Title="Buy Bait",Id="Buy Bait"},
             {Mode="Toggle",Title="Auto Buy Bait",Id="Auto Buy Bait"}
-        }},
-        {Title="Halloween Event", Children={
-            {Mode="Toggle",Title="Auto Halloween Event", Id="Auto Halloween Event"},
-            {Mode="Toggle",Title="Ignore Halloween Boss", Id="Ignore Halloween Boss"},
         }}
     },
     ["Sea Events"] = {
@@ -383,7 +379,6 @@ local UiIntilize = {
             {Mode = "Toggle",Title = "Auto Buy Bribe",Id = "Auto Buy Bribe"},
             {Mode = "Toggle",Title = "Auto Random Bone",Id = "Auto Random Bone"},
             {Mode = "Toggle",Title = "Auto Random Fruit",Id = "Auto Random Fruit"},
-            {Mode = "Toggle",Title = "Auto Random Halloween",Id = "Auto Random Halloween"},
             {Mode = "Toggle",Title = "Auto Buy Legendary Sword",Id = "Auto Buy Legendary Sword"},
             {Mode = "Toggle",Title = "Auto Buy Haki Color",Id = "Auto Buy Haki Color"},
             {Mode = "Toggle",Title = "Only Buy Legendary Haki Color",Id = "Only Buy Legendary Haki Color"},
