@@ -31,7 +31,7 @@ local CommF = Remotes:WaitForChild("CommF_")
 local Players = game.Players
 local LocalPlayer = Players.LocalPlayer
 
-local Starlight = loadstring(game:HttpGet("github.com/nilprovai/Hachi-Hub/blob/main/starlight-ui.lua"))() 
+local Starlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/nilprovai/Hachi-Hub/refs/heads/main/starlight-ui.lua"))() 
 local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
 
 local UiOrders = {
