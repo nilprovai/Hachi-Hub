@@ -493,6 +493,7 @@ local UiIntilize = {
         {Title = "Combat", Children={
             {Mode = "Toggle",Title = "Auto Click",Id = "Auto Click"},
             {Mode = "Toggle",Title = "Auto M1 Fruit",Id = "Auto M1 Fruit"},
+            {Mode = "Toggle",Title = "Dragon Storm Kill Aura",Id = "Dragon Storm Kill Aura"},
             {Mode = "Toggle",Title = "On Player",Id = "Auto Click On Player"},
             {Mode = "Toggle",Title = "On Mob",Id = "Auto Click On Mob"},
             {Mode = "Toggle",Title = "On Sea Events",Id = "Auto Click On Sea Events"},
